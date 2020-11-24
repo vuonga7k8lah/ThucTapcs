@@ -7,15 +7,17 @@
         <div class="row">
             <div class="col-md-4 login-sec">
                 <h2 class="text-center">Đăng Nhập</h2>
-                <form class="login-form">
+                <div style="color: red"><?php if(isset($_SESSION['errorsSVLogin'])){echo $_SESSION['errorsSVLogin'];}?></div>
+                <div style="color: red"><?php if(isset($_SESSION['errorsGVLogin'])){echo $_SESSION['errorsGVLogin'];}?></div>
+                <form class="login-form" action="<?=\ThucTap\Core\URL::uri('login')?>" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-uppercase">Tài Khoản:</label>
-                        <input type="text" class="form-control" required >
+                        <input type="text" class="form-control" required name="Username">
 
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1" class="text-uppercase">Mật Khẩu:</label>
-                        <input type="password" class="form-control" required >
+                        <input type="password" class="form-control" name="Password" required >
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Truy Cập Với Tư Cách:</label>
