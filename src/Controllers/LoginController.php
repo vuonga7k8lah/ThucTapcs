@@ -26,7 +26,7 @@ class LoginController
                 if(LoginModel::loginWithSV($data)[0]>0){
                     Session::destroy('errorsSVLogin');
                     Session::set('isLogin',LoginModel::loginWithSV($data)[1]);
-                    Redirect::to('dashboardSV');
+                    Redirect::to('listThongBao');
                 }else{
                     Session::set('errorsSVLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
                     Redirect::to('login');
@@ -42,6 +42,13 @@ class LoginController
                 }
                 break;
             case 'admin':
+            	if($_POST['Username']==='admin'&&$_POST['Password']==='admin'){
+		            Session::destroy('errorsAdminLogin');
+		            echo 'Hello Admin';
+	            }else{
+		            Session::set('errorsAdminLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
+		            Redirect::to('login');
+	            }
                 break;
         }
     }

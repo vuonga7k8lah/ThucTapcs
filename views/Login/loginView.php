@@ -9,6 +9,8 @@
                 <h2 class="text-center">Đăng Nhập</h2>
                 <div style="color: red"><?php if(isset($_SESSION['errorsSVLogin'])){echo $_SESSION['errorsSVLogin'];}?></div>
                 <div style="color: red"><?php if(isset($_SESSION['errorsGVLogin'])){echo $_SESSION['errorsGVLogin'];}?></div>
+                <div style="color: red"><?php if(isset($_SESSION['errorsAdminLogin'])){echo $_SESSION['errorsAdminLogin'];
+                }?></div>
                 <form class="login-form" action="<?=\ThucTap\Core\URL::uri('login')?>" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1" class="text-uppercase">Tài Khoản:</label>
