@@ -51,6 +51,18 @@ class SinhVienModel
 
 	public static function isSVDKDeTai($MaSV)
 	{
-		return DB::makeConnection()->query("SELECT * FROM svdk where MaSV='".$MaSV."'")->num_rows;
+		return DB::makeConnection()->query("SELECT * FROM svdk where MaSV='" . $MaSV . "'")->num_rows;
+	}
+
+	public static function queryDeTai($MaSV)
+	{
+		return DB::makeConnection()
+			->query("SELECT * FROM detai dt JOIN svdk svdk ON dt.MaDT=svdk.MaDT WHERE svdk.MaSV='" . $MaSV . "'")
+			->fetch_assoc();
+	}
+
+	public static function queryLop()
+	{
+		return DB::makeConnection()->query("select * from lop")->fetch_all();
 	}
 }

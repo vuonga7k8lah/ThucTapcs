@@ -44,7 +44,8 @@ class LoginController
             case 'admin':
             	if($_POST['Username']==='admin'&&$_POST['Password']==='admin'){
 		            Session::destroy('errorsAdminLogin');
-		            echo 'Hello Admin';
+		            Session::set('isLogin',['MaQL'=>1,'TenAdmin'=>'Hello Admin']);
+		            Redirect::to('dashboardAdmin');
 	            }else{
 		            Session::set('errorsAdminLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
 		            Redirect::to('login');

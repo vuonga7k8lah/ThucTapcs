@@ -11,9 +11,6 @@ function uploadFile($data)
 {
 	$allowed = array('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf','application/vnd.ms-excel');
 	if (in_array(strtolower($data['type']), $allowed)) {
-		// Neu co trong dinh dang cho phep, tach lay phan mo rong
-//		$ext = substr(strrchr($data['name'], '.'), 1);
-//		$renamed = uniqid(rand(), true) . '.' . "$ext";
 		$NameIMG = $data['name'];
 		if (!move_uploaded_file($data['tmp_name'], "./assets/upload/files/" . $data['name'])) {
 			$errors[] = "<p class='error'>Server problem</p>";
@@ -42,4 +39,17 @@ function uploadIMGProfile($data)
 		}
 	}
 	return $NameIMG;
+}
+
+function CheckReload(array $aName)
+{
+	$pageRefreshed = isset($_SERVER['HTTP_CACHE_CONTROL']) &&
+		($_SERVER['HTTP_CACHE_CONTROL'] === 'max-age=0' || $_SERVER['HTTP_CACHE_CONTROL'] == 'no-cache');
+	if ($pageRefreshed == 1) {
+		foreach ($aName as $name) {
+			unset($_SESSION[$name]);
+		}
+	} else {
+		true;
+	}
 }
