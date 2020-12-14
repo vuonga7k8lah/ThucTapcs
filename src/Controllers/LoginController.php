@@ -35,7 +35,8 @@ class LoginController
             case 'giangvien':
                 if(LoginModel::loginWithGV($data)[0]>0){
                     Session::destroy('errorsGVLogin');
-                    var_dump(LoginModel::loginWithGV($data)[1]);die();
+	                Session::set('isLogin',LoginModel::loginWithGV($data)[1]);
+	                Redirect::to('dashboardGV');
                 }else{
                     Session::set('errorsGVLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
                     Redirect::to('login');

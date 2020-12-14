@@ -35,16 +35,16 @@ $row = \ThucTap\Models\AdminModel::selectAllSV();
 							?>
                             <tr>
                                 <td data-label="STT"><?= $i ?></td>
-                                <td data-label="Hình ảnh" style="text-align: center;"><img
+                                <td data-label="Avatar" style="text-align: center;"><img
                                             style="width: 50px;height: 50px; border-radius: 100%; object-fit: cover;"
                                             src="./assets/upload/Profile/<?= !empty($value[10]) ? $value[10] :
 												'avt.jpg' ?>"
                                             alt=""></td>
-                                <td data-label="Tên"><?= $value[2] ?></td>
-                                <td data-label="Email"><?= $value[0] ?></td>
+                                <td data-label="Tên Sinh Viên"><?= $value[2] ?></td>
+                                <td data-label="Mã Sinh Viên"><?= $value[0] ?></td>
                                 <td data-label="Phone"><?= $value[7] ?></td>
-                                <td data-label="Địa chỉ"><?= $value[8] ?></td>
-                                <td data-label="Địa chỉ"><?= $value[9] ?></td>
+                                <td data-label="Địa Chỉ"><?= $value[8] ?></td>
+                                <td data-label="Email"><?= $value[9] ?></td>
                                 <td data-label="Sửa" class="right__iconTable"><a href="<?=\ThucTap\Core\URL::uri('editUserSV').'/?id='.$value[0]?>"><img src="
                                 ./assets/admin/assets/icon-edit.svg" alt=""></a></td>
                                 <td data-label="Xoá" class="right__iconTable"><a href="<?=\ThucTap\Core\URL::uri('deleteUserSV').'/?id='.$value[0]?>"><img

@@ -5,6 +5,10 @@ namespace ThucTap\Controllers;
 
 
 use ThucTap\Core\Redirect;
+use ThucTap\Core\Request;
+use ThucTap\Core\Session;
+use ThucTap\Models\AdminModel;
+use ThucTap\Models\GiangVienModel;
 use ThucTap\Models\SinhVienModel;
 
 class SinhVienController
@@ -40,6 +44,46 @@ class SinhVienController
 		}
 	}
 
+	public function actionListDeTaiSV()
+	{
+		$MaGV = $_POST['MaGV'];
+		Session::set('aDataDeTai', [$MaGV, GiangVienModel::selectNameGV($MaGV)
+		['TenGV']]);
+		Redirect::to('listDetai');
+	}
+
+	public function downloadFile()
+	{
+		$name = $_GET['name'];
+		$time = $_GET['time'];
+		$filePath = './assets/upload/files/' . $name;
+		output_file($filePath, $name, $time);
+		Redirect::to('listDetai');
+	}
+
+	public function registerDeTai()
+	{
+		$data['MaDT'] = $_GET['id'];
+		$data['status'] = 'Đã DK';
+		$data['MaSV'] = $_SESSION['isLogin']['MaSV'];
+
+		if (SinhVienModel::updateStatusDetai($data) && SinhVienModel::insertSVDK($data)) {
+			?>
+            <script>
+                var x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                if (x == true) {
+                    window.location = "http://127.0.0.1/ThucTap/TTDeTai";
+                }
+            </script>
+			<?php
+		}
+	}
+
+	public function CTThongBao()
+	{
+		require_once 'views/SVviews/ThongBao/CTThongBao.php';
+	}
+
 	public function profileView()
 	{
 		require_once 'views/SVviews/Profile/svProfileView.php';
@@ -60,6 +104,25 @@ class SinhVienController
 
 	public function TTDeTai()
 	{
-    require_once 'views/SVviews/TTDeTai/TTDeTaiView.php';
+		require_once 'views/SVviews/TTDeTai/TTDeTaiView.php';
+	}
+
+	public function HuyDeTaiView()
+	{
+	    require_once 'views/SVviews/HuyDeTai/HuyDeTai.php';
+	}
+	public function HuyDeTai()
+	{
+        $data=$_POST;
+        if (SinhVienModel::insertHuyDT($data)){
+	        ?>
+            <script>
+                var x = confirm('Yêu Cầu Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                if (x == true) {
+                    window.location = "http://127.0.0.1/ThucTap/dashboardSV";
+                }
+            </script>
+	        <?php
+        }
 	}
 }

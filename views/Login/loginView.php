@@ -12,7 +12,11 @@
 <body>
 <section class="login-block">
     <div class="container">
-        <div class="row">
+        <div class="row" style="
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+">
             <div class="col-md-4 login-sec">
                 <h2 class="text-center">Đăng Nhập</h2>
                 <div style="color: red"><?php if (isset($_SESSION['errorsSVLogin'])) {
@@ -56,7 +60,7 @@
             <div class="col-md-8 banner-sec">
                 <div class="carousel-item active">
                     <img class="d-block img-fluid" src="./assets/upload/kma.jpg"
-                         alt="First slide" style="margin-top: 23px">
+                         alt="First slide" style="margin-top: 10px">
                 </div>
             </div>
         </div>
@@ -64,5 +68,5 @@
 </section>
 </body>
 </html>
-
+<?php CheckReload(['errorsSVLogin','errorsGVLogin','errorsAdminLogin']);?>
 

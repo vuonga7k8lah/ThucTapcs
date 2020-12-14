@@ -90,6 +90,11 @@ class AdminQuanLyUserController
 
 	public function addUserGV()
 	{
+		$data = $_POST;
+		if (AdminModel::insertUserGV($data)) {
+			Session::set('successAddUserGV', 'Tài Khoản Giảng Viên Tạo Thành Công');
+			Redirect::to('listUserGV');
+		}
 
 	}
 
@@ -105,6 +110,10 @@ class AdminQuanLyUserController
 
 	public function deleteUserGV()
 	{
-
+		$MaGV = $_GET['id'];
+		if (GiangVienModel::deleteUserGV($MaGV)) {
+			Session::set('successDeleteUserGV', 'Tài Khoản Giảng Viên Đã Xóa Thành Công');
+			Redirect::to('listUserGV');
+		}
 	}
 }

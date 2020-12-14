@@ -54,14 +54,29 @@ class AdminModel
 
 	public static function insertDeTai($data)
 	{
-		return DB::makeConnection()
-			->query("INSERT INTO `detai`(`MaDT`, `TenDT`, `MaGV`, `ThoigianDK`, `Status`, `DinhKem`, `MoTa`) VALUES ('" .
-				$data['MaDT'] . "','" . $data['TenDT'] . "','" . $data['MaGV'] . "',null,'','" . $data['DinhKem'] .
-				"','" . $data['MoTa'] . "')");
+		$sql
+			= "INSERT INTO `detai`(`MaDT`, `TenDT`, `MaGV`, `registration_date`, `Status`, `DinhKem`, `MoTa`,`time_start`,`time_end`) VALUES ('" .
+			$data['MaDT'] . "','" . $data['TenDT'] . "','" . $data['MaGV'] . "',null,'','" . $data['DinhKem'] .
+			"','" . $data['MoTa'] . "',null,'" . $data['time_end'] . "')";
+		return DB::makeConnection()->query($sql);
 	}
 
 	public static function selectDeTaiWithMaDT($MaDT)
 	{
-		return DB::makeConnection()->query("select * from detai where MaDT='".$MaDT."'")->fetch_assoc();
+		return DB::makeConnection()->query("select * from detai where MaDT='" . $MaDT . "'")->fetch_assoc();
 	}
+
+	public static function insertUserGV($data)
+	{
+		$sql
+			= "INSERT INTO `giangvien`(`MaGV`, `Makhoa`, `TenGV`, `Ngaysinh`, `Dantoc`, `Hocvan`, `Gioitinh`, `Matkhau`, `Diachi`, `Email`, `SDT`, `Anh`) VALUES ('" .
+			$data['MaGV'] . "','" . $data['MaKhoa'] . "','" . $data['TenGV'] . "','" . $data['NgaySinh'] . "','" .
+			$data['DanToc'] . "','" .
+			$data['HocVan'] . "','" . $data['GioTinh'] . "','" . $data['NgaySinh'] . "','" . $data['DiaChi'] . "','" .
+			$data['Email'] . "','" .
+			$data['SDT'] . "','')";
+		return DB::makeConnection()
+			->query($sql);
+	}
+
 }

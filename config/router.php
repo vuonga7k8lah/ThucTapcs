@@ -11,15 +11,22 @@ $aRoute->get('logoutSV','ThucTap\Controllers\LogoutController@logoutSV');
 $aRoute->get('dashboardSV','ThucTap\Controllers\SinhVienController@loadView');
 //sinh vien đề tài
 $aRoute->get('listDetai','ThucTap\Controllers\SinhVienController@listDetaiView');
+$aRoute->post('listDetaisv','ThucTap\Controllers\SinhVienController@actionListDeTaiSV');
 $aRoute->get('addDeTai','ThucTap\Controllers\SinhVienController@addDetaiView');
+$aRoute->get('registerDeTai/','ThucTap\Controllers\SinhVienController@registerDeTai');
+$aRoute->get('downloadFile/','ThucTap\Controllers\SinhVienController@downloadFile');
 $aRoute->post('addDeTai','ThucTap\Controllers\SinhVienController@addDetai');
 // profile sinh viên
 $aRoute->get('profileView','ThucTap\Controllers\SinhVienController@profileView');
 $aRoute->post('editProfile','ThucTap\Controllers\SinhVienController@editProfile');
 //notification-sinh vien
 $aRoute->get('listThongBao','ThucTap\Controllers\SinhVienController@listThongBaoView');
+$aRoute->get('CTThongBao/','ThucTap\Controllers\SinhVienController@CTThongBao');
 //Thông Tin Đề Tài Đã Chọn
 $aRoute->get('TTDeTai','ThucTap\Controllers\SinhVienController@TTDeTai');
+//Hủy Đề Tài
+$aRoute->get('HuyDeTai','ThucTap\Controllers\SinhVienController@HuyDeTaiView');
+$aRoute->post('HuyDeTai','ThucTap\Controllers\SinhVienController@HuyDeTai');
 // ADmin-quản lý
 $aRoute->get('dashboardAdmin','ThucTap\Controllers\AdminController@loadView');
 $aRoute->get('listUserSV','ThucTap\Controllers\AdminController@listUserSV');
@@ -46,3 +53,12 @@ $aRoute->post('listDeTai','ThucTap\Controllers\AdminQuanLyUserController@actionL
 $aRoute->get('addDeTai','ThucTap\Controllers\AdminQuanLyUserController@addDeTaiView');
 $aRoute->get('editDeTai/','ThucTap\Controllers\AdminQuanLyUserController@editDeTaiView');
 $aRoute->post('addDeTai','ThucTap\Controllers\AdminQuanLyUserController@addDeTai');
+//Giảng Viên
+$aRoute->get('dashboardGV','ThucTap\Controllers\GiangVienController@dashboardGV');
+$aRoute->get('SVDK','ThucTap\Controllers\GiangVienController@SVDK');
+//thong tin cai nhan
+$aRoute->get('profileGV','ThucTap\Controllers\GiangVienController@profileGV');
+//gửi Thông Báo
+$aRoute->get('guiTB/','ThucTap\Controllers\GiangVienController@guiTB');
+$aRoute->get('guiTB','ThucTap\Controllers\GiangVienController@guiTBView');
+$aRoute->post('guiTB/','ThucTap\Controllers\GiangVienController@guiActionTB');

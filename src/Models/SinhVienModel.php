@@ -25,11 +25,17 @@ class SinhVienModel
 				$MaDT . "'")->num_rows;
 	}
 
-	public static function insertTaiLieuDX($data)
+	public static function updateStatusDetai($data)
 	{
 		return DB::makeConnection()
-			->query("INSERT INTO `detaidx`(`id`, `TenDT`, `MoTa`, `gvhd`, `DinhKem`, `register_date`) VALUES (null,'" .
-				$data['TenDT'] . "','" . $data['MoTa'] . "','" . $data['GVHD'] . "','" . $data['TaiLieu'] . "',null)");
+			->query("UPDATE detai set Status='" . $data['status'] . "',date_start=null where MaDT='" . $data['MaDT'] .
+				"'");
+	}
+
+	public static function insertSVDK($data)
+	{
+		return DB::makeConnection()->query("INSERT INTO svdk value(null,'" . $data['MaSV'] . "','" . $data['MaDT'] .
+			"')");
 	}
 
 	public static function selectProfileSV($MaSV)
@@ -44,9 +50,9 @@ class SinhVienModel
 		return DB::makeConnection()->query("UPDATE sinhvien set Anh='" . $data["Anh"] . "' where MaSV='" . $MaSV . "'");
 	}
 
-	public static function selectAllThongBao()
+	public static function selectAllThongBao($MaSV)
 	{
-		return DB::makeConnection()->query("SELECT * FROM ThongBao")->fetch_all();
+		return DB::makeConnection()->query("SELECT * FROM ThongBao where MaSV='" . $MaSV . "'")->fetch_all();
 	}
 
 	public static function isSVDKDeTai($MaSV)
@@ -64,5 +70,15 @@ class SinhVienModel
 	public static function queryLop()
 	{
 		return DB::makeConnection()->query("select * from lop")->fetch_all();
+	}
+
+	public static function queryThongBaoWithMaTB($MaTB)
+	{
+		return DB::makeConnection()->query("SELECT * FROM thongbao where idThongBao=" . $MaTB . "")->fetch_assoc();
+	}
+
+	public static function insertHuyDT($data)
+	{
+		return DB::makeConnection()->query("INSERT INTO `huydetai`(`id`, `MaDT`, `MaGV`, `MaSV`, `LyDo`, `register_date`) VALUES (null,'".$data['MaDT']."','".$data['MaGV']."','".$data['MaSV']."','".$data['LyDo']."',null)");
 	}
 }

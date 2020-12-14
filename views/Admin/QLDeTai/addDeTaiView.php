@@ -6,7 +6,7 @@ $aDataGV=\ThucTap\Models\GiangVienModel::queryGV();
 ?>
     <div class="right">
         <div class="right__content">
-            <div class="right__title">Thêm Sinh Viên</div>
+            <div class="right__title">Thêm Đề Tài</div>
             <div class="right__formWrapper">
                 <form action="<?=\ThucTap\Core\URL::uri('addDeTai')?>" method="post" enctype="multipart/form-data">
                     <div class="right__inputWrapper">
@@ -34,6 +34,10 @@ $aDataGV=\ThucTap\Models\GiangVienModel::queryGV();
                     <div class="right__inputWrapper">
                         <label for="image">Tài Liệu Đính Kèm</label>
                         <input type="file" name="DinhKem">
+                    </div>
+                    <div class="right__inputWrapper">
+                        <label for="time">Thời Gian Kết Thúc Đề Tài</label>
+                        <input id="time" name="time_end" type="date" required>
                     </div>
                     <button class="btn" type="submit">Lưu</button>
                 </form>

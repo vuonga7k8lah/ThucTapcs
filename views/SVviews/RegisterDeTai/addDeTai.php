@@ -32,6 +32,10 @@ require_once 'views/SVviews/navigation.php';
                         <label for="image">Tài Liệu Đính Kèm</label>
                         <input type="file" name="TaiLieu">
                     </div>
+                    <div class="right__inputWrapper">
+                        <label for="time">Thời Gian Kết Thúc Đề Tài</label>
+                        <input id="time" name="time_end" type="date" required>
+                    </div>
                     <button class="btn" type="submit">Gửi</button>
                 </form>
             </div>

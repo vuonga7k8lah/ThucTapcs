@@ -37,10 +37,12 @@
                     </div></a>
                 </li>
                 <li class="left__menuItem">
-                    <div class="left__title"><img src="./assets/admin/assets/icon-edit.svg" alt="">Gia Hạn Đề Tài</div>
+                    <div class="left__title"><a href=""><img src="./assets/admin/assets/icon-edit.svg" alt="">Gia Hạn Đề Tài</div></a>
                 </li>
                 <li class="left__menuItem">
-                    <div class="left__title"><img src="./assets/admin/assets/icon-edit.svg" alt="">Hủy Đề Tài</div>
+                    <div class="left__title"><a href="<?=\ThucTap\Core\URL::uri('HuyDeTai')?>"><img src="
+                    ./assets/admin/assets/icon-edit.svg"
+                                                                  alt="">Hủy Đề Tài</div></a>
                 </li>
                 <li class="left__menuItem">
                     <div class="left__title"><img src="./assets/admin/assets/icon-book.svg" alt="">Nộp Báo Cáo</div>
