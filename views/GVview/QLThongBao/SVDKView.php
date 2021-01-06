@@ -1,5 +1,9 @@
 <?php
 isUserLogin();
+//$data['MaGV']=$_SESSION['isLogin']['MaGV'];
+//$data['Status']="Đã DK";
+//$row=\ThucTap\Models\GiangVienModel::svdkDeTai($data);
+//var_dump($row);die();
 require_once 'views/header.php';
 require_once 'views/GVview/navigation.php';
 $data['MaGV']=$_SESSION['isLogin']['MaGV'];
@@ -10,6 +14,7 @@ $i=1;
 	<div class="right">
 		<div class="right__content">
 			<div class="right__title">Danh Sách Sinh Viên Đăng Ký Đề Tài</div>
+            <div style="color: pink"><?php if(isset($_SESSION['successTBDT'])){echo $_SESSION['successTBDT'];}?></div>
 				<div class="right__tableWrapper">
 					<table>
 						<thead>
@@ -23,11 +28,11 @@ $i=1;
 						</tr>
 						</thead>
 						<tbody>
-						<?php foreach ($row as $value): ?>
+						<?php foreach ($row as $value):?>
 							<tr>
 								<td data-label="STT"><?= $i ?></td>
 								<td data-label="Tên Đề Tài"><?= $value[1] ?></td>
-								<td data-label="Tên Sinh Viên"><?= TenSV($value[9])[0] ?></td>
+								<td data-label="Tên Sinh Viên"><?= TenSV($value[9]) ?></td>
 								<td data-label="Ngày Đăng Ký"><?= actionTime($value[7]) ?></td>
 								<td data-label="Ngày Kết Thúc"><?= actionTime($value[8]) ?></td>
 								<td data-label="Chi Tiết"><a href="<?=\ThucTap\Core\URL::uri('guiTB')
@@ -41,4 +46,5 @@ $i=1;
 		</div>
 	</div>
 <?php
+CheckReload(['successTBDT']);
 require_once 'views/footer.php';

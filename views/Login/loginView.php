@@ -11,13 +11,10 @@
 </head>
 <body>
 <section class="login-block">
+    <h2 class="login-block__heading" >Hệ Thống Quản Lý Đề Tài Khoa Học </h2>
     <div class="container">
-        <div class="row" style="
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-">
-            <div class="col-md-4 login-sec">
+        <div class="login-block__wrap" >
+            <div class="login-block__content login-sec">
                 <h2 class="text-center">Đăng Nhập</h2>
                 <div style="color: red"><?php if (isset($_SESSION['errorsSVLogin'])) {
 						echo $_SESSION['errorsSVLogin'];
@@ -51,16 +48,19 @@
                             <input type="checkbox" class="form-check-input">
                             <small>Remember Me</small>
                         </label>
-                        <button type="submit" class="btn btn-login float-right">Gửi</button>
+
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-login">Gửi</button>
                     </div>
 
                 </form>
                 <div class="copy-text">Created with <i class="fa fa-heart"></i> by <a href="">VươngKMA</a></div>
             </div>
-            <div class="col-md-8 banner-sec">
+            <div class="login-block__logo banner-sec">
                 <div class="carousel-item active">
                     <img class="d-block img-fluid" src="./assets/upload/kma.jpg"
-                         alt="First slide" style="margin-top: 10px">
+                         alt="First slide">
                 </div>
             </div>
         </div>

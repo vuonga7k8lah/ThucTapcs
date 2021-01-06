@@ -23,8 +23,26 @@
                 </div>
             </li>
             <li class="left__menuItem">
+                <a href="<?= \ThucTap\Core\URL::uri('listNhomChatGV') ?>">
+                    <div class="left__title"><img src="./assets/admin/assets/icon-user.svg" alt="">Quản Lý Nhóm Chat
+                    </div>
+                </a>
+            </li>
+            <li class="left__menuItem">
                 <a href="<?= \ThucTap\Core\URL::uri('profileGV') ?>">
                     <div class="left__title"><img src="./assets/admin/assets/icon-user.svg" alt="">Thông Tin Cái Nhân
+                    </div>
+                </a>
+            </li>
+            <li class="left__menuItem">
+                <a href="<?= \ThucTap\Core\URL::uri('listHuyDK') ?>">
+                    <div class="left__title"><img src="./assets/admin/assets/icon-user.svg" alt="">Quản Lý Đăng Ký
+                    </div>
+                </a>
+            </li>
+            <li class="left__menuItem">
+                <a href="<?= \ThucTap\Core\URL::uri('') ?>">
+                    <div class="left__title"><img src="./assets/admin/assets/icon-user.svg" alt="">Báo Cáo Đề Tài
                     </div>
                 </a>
             </li>

@@ -28,14 +28,21 @@ class SinhVienModel
 	public static function updateStatusDetai($data)
 	{
 		return DB::makeConnection()
-			->query("UPDATE detai set Status='" . $data['status'] . "',date_start=null where MaDT='" . $data['MaDT'] .
+			->query("UPDATE detai set Status='" . $data['status'] . "',time_start=null,SinhVienDK='" . $data['MaSV'] .
+				"' where MaDT='" .
+				$data['MaDT'] .
 				"'");
 	}
 
-	public static function insertSVDK($data)
+	public static function isMaSVExistSVDK($MaSV)
 	{
-		return DB::makeConnection()->query("INSERT INTO svdk value(null,'" . $data['MaSV'] . "','" . $data['MaDT'] .
-			"')");
+		return DB::makeConnection()->query("SELECT * FROM svdk where MaSV='" . $MaSV . "'")->num_rows;
+	}
+
+	public static function insertSVDK($MaSV, $MaDT)
+	{
+		$sql = "INSERT INTO `svdk`(`idSVDK`, `MaSV`, `MaDT`) VALUES(null,'" . $MaSV . "','" . $MaDT . "')";
+		return DB::makeConnection()->query($sql);
 	}
 
 	public static function selectProfileSV($MaSV)
@@ -55,9 +62,20 @@ class SinhVienModel
 		return DB::makeConnection()->query("SELECT * FROM ThongBao where MaSV='" . $MaSV . "'")->fetch_all();
 	}
 
+	public static function selectAllThongBaoDT($MaDT)
+	{
+		return DB::makeConnection()->query("SELECT * FROM ThongBaoDT where MaDT='" . $MaDT . "'")->fetch_all();
+	}
+
 	public static function isSVDKDeTai($MaSV)
 	{
 		return DB::makeConnection()->query("SELECT * FROM svdk where MaSV='" . $MaSV . "'")->num_rows;
+	}
+
+	public static function SelectMaDT($MaSV)
+	{
+		$sql = DB::makeConnection()->query("SELECT MaDT FROM svdk where MaSV='" . $MaSV . "'");
+		return [$sql->fetch_assoc(), $sql->num_rows];
 	}
 
 	public static function queryDeTai($MaSV)
@@ -77,8 +95,22 @@ class SinhVienModel
 		return DB::makeConnection()->query("SELECT * FROM thongbao where idThongBao=" . $MaTB . "")->fetch_assoc();
 	}
 
+	public static function queryThongBaoWithMaTBDT($MaTB)
+	{
+		return DB::makeConnection()->query("SELECT * FROM thongbaodt where id=" . $MaTB . "")->fetch_assoc();
+	}
+
 	public static function insertHuyDT($data)
 	{
-		return DB::makeConnection()->query("INSERT INTO `huydetai`(`id`, `MaDT`, `MaGV`, `MaSV`, `LyDo`, `register_date`) VALUES (null,'".$data['MaDT']."','".$data['MaGV']."','".$data['MaSV']."','".$data['LyDo']."',null)");
+		return DB::makeConnection()
+			->query("INSERT INTO `huydetai`(`id`, `MaDT`, `MaGV`, `MaSV`, `LyDo`, `register_date`) VALUES (null,'" .
+				$data['MaDT'] . "','" . $data['MaGV'] . "','" . $data['MaSV'] . "','" . $data['LyDo'] . "',null)");
+	}
+
+	public static function isExistDeTaiWithMaDT($MaDT)
+	{
+		$query = DB::makeConnection()->query("SELECT SinhVienDK FROM detai where MaDT='" . $MaDT .
+			"'and Status='Đã DK'");
+		return [$query->num_rows, $query->fetch_assoc()];
 	}
 }

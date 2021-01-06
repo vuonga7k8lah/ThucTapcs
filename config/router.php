@@ -3,6 +3,7 @@
  * @var $aRoute \ThucTap\Core\Route
  */
 $aRoute->get('login','ThucTap\Controllers\LoginController@loadView');
+$aRoute->get('','ThucTap\Controllers\LoginController@loadView');
 $aRoute->post('login','ThucTap\Controllers\LoginController@actionLogin');
 
 //Logout
@@ -61,4 +62,18 @@ $aRoute->get('profileGV','ThucTap\Controllers\GiangVienController@profileGV');
 //gửi Thông Báo
 $aRoute->get('guiTB/','ThucTap\Controllers\GiangVienController@guiTB');
 $aRoute->get('guiTB','ThucTap\Controllers\GiangVienController@guiTBView');
-$aRoute->post('guiTB/','ThucTap\Controllers\GiangVienController@guiActionTB');
+$aRoute->post('guiTB','ThucTap\Controllers\GiangVienController@guiActionTB');
+//chatbox
+$aRoute->get('chatbox','ThucTap\Controllers\ChatBoxController@loadView');
+$aRoute->get('listNhomChat','ThucTap\Controllers\ChatBoxController@listNhomChat');
+$aRoute->get('addNhomChat','ThucTap\Controllers\ChatBoxController@addNhomChatView');
+$aRoute->get('urlChatBox','ThucTap\Controllers\ChatBoxController@LoadlistData');
+$aRoute->post('saveData','ThucTap\Controllers\ChatBoxController@saveData');
+$aRoute->post('addNhomChatBox','ThucTap\Controllers\ChatBoxController@addNhomChatBox');
+//chatbox giang vien
+$aRoute->get('listNhomChatGV','ThucTap\Controllers\ChatBoxController@listNhomChatGV');
+$aRoute->get('CTNhomGV/','ThucTap\Controllers\ChatBoxController@CTNhomGV');
+//QLDK giang Vien
+$aRoute->get('listHuyDK','ThucTap\Controllers\GiangVienController@listHuyDK');
+//nộp Báo cáo
+$aRoute->get('NopBaoCao','ThucTap\Controllers\SinhVienController@NopBaoCao');

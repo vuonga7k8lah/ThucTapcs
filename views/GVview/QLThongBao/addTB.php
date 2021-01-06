@@ -1,8 +1,5 @@
 <?php
 isUserLogin();
-$aDataGV=TenSV(\ThucTap\Models\GiangVienModel::queryMaSVDK($_SESSION['isLogin']['MaGV']));
-var_dump($aDataGV);die();
-foreach ($aDataGV as $value) { var_dump($value);die();}
 require_once 'views/header.php';
 require_once 'views/GVview/navigation.php';
 
@@ -11,20 +8,20 @@ require_once 'views/GVview/navigation.php';
 		<div class="right__content">
 			<div class="right__title">Thêm Thông Báo</div>
 			<div class="right__formWrapper">
-				<form action="<?=\ThucTap\Core\URL::uri('addTB')?>" method="post" enctype="multipart/form-data">
+				<form action="<?=\ThucTap\Core\URL::uri('guiTB')?>" method="post" enctype="multipart/form-data">
 					<div class="right__inputWrapper">
 						<label for="title">Tiêu Đề Thông Báo</label>
-						<input type="text" name="TieuDe" id="MaDT" required>
+						<input type="text" name="TieuDe" id="title" required>
 						<input type="hidden" name="idNguoiGui" id="MaDT" value="<?=$_SESSION['isLogin']['MaGV']?>"
 						       required>
 					</div>
 					<div class="right__inputWrapper">
-						<label for="p_category">Chọn Sinh Viên Thông Báo</label>
-						<select name="MaGV">
-							<option disabled selected>Chọn Sinh Viên</option>
-							<?php $aDataGV=TenSV(\ThucTap\Models\GiangVienModel::queryMaSVDK($_SESSION['isLogin']['MaGV']));?>
-							<?php foreach ($aDataGV as $value) : var_dump($value);die();?>
-								<option value="<?=$value[0]?>"><?=$value[2]?></option>
+						<label for="p_category">Chọn Nhóm Để Gửi Thông Báo</label>
+						<select name="MaDT">
+							<option disabled selected>Chọn Nhóm Đăng Ký</option>
+							<?php $aDataGV=\ThucTap\Models\GiangVienModel::MaDTDK($_SESSION['isLogin']['MaGV']);?>
+							<?php foreach ($aDataGV as $value) :?>
+								<option value="<?=$value[0]?>"><?=TenSV($value[1])?></option>
 							<?php endforeach;?>
 						</select>
 					</div>
@@ -36,7 +33,7 @@ require_once 'views/GVview/navigation.php';
 						<label for="image">Tài Liệu Đính Kèm</label>
 						<input type="file" name="DinhKem">
 					</div>
-					<button class="btn" type="submit">Lưu</button>
+					<button class="btn" type="submit">Gửi</button>
 				</form>
 			</div>
 		</div>

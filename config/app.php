@@ -1,6 +1,6 @@
 <?php
 return [
-    'HomeURL' => 'http://127.0.0.1/ThucTap/',
+    'HomeURL' => '/ThucTap/',
     'HomeBase' => '/ThucTap/',
     'Database' =>[
         'host'=>'localhost',

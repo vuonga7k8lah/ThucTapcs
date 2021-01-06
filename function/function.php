@@ -12,9 +12,9 @@ function uploadFile($data)
 	$allowed = array('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf','application/vnd.ms-excel');
 	if (in_array(strtolower($data['type']), $allowed)) {
 		$NameIMG = $data['name'];
-		if (!move_uploaded_file($data['tmp_name'], "./assets/upload/files/" . $data['name'])) {
-			$errors[] = "<p class='error'>Server problem</p>";
-		}
+//		if (!move_uploaded_file($data['tmp_name'], "./assets/upload/files/" . $data['name'])) {
+//			$errors[] = "<p class='error'>Server problem</p>";
+//		}
 		// Xoa file da duoc upload va ton tai trong thu muc tam
 		if (isset($data['tmp_name']) && is_file($data['tmp_name']) && file_exists($data['tmp_name'])) {
 			unlink($data['tmp_name']);
@@ -152,8 +152,11 @@ function output_file($Source_File, $Download_Name, $time, $mime_type = '')
 	die();
 }
 
-function the_excerpt($text, $string = 300)
+function the_excerpt($text, $string)
 {
+	if (empty($string)) {
+		$string = 300;
+	}
 	$sanitized = htmlentities($text, ENT_COMPAT, 'UTF-8');
 	if (strlen($sanitized) > $string) {
 		$cutString = substr($sanitized, 0, $string);
@@ -182,14 +185,29 @@ function handleNguoiGui($key)
 
 function TenSV($MaSV)
 {
-	$aData= (array) $MaSV;
-	if (is_array($MaSV) && count($aData)>1) {
-		$aMaSV = explode('-', $MaSV);
-		foreach ($aMaSV as $value) {
-			$aName[$value] = \ThucTap\Models\GiangVienModel::queryNameSV($value)[0];
-		}
-		return $aName;
-	} else {
-		return [\ThucTap\Models\GiangVienModel::queryNameSV($MaSV[0])[0],$MaSV[0]];
+	if (strlen($MaSV) === 6) {
+		return \ThucTap\Models\GiangVienModel::queryNameSV($MaSV)['TenSV'];
+	}
+	$aData = explode(" ", $MaSV);
+	foreach ($aData as $value) {
+		$aName[] = \ThucTap\Models\GiangVienModel::queryNameSV($value)['TenSV'];
+	}
+	return implode('-', $aName);
+}
+
+function returnIdNhomFromMaSVOrMaGV($ma, $type)
+{
+	switch ($type) {
+		case 'SinhVien':
+			$aData = \ThucTap\Models\ChatBoxModel::queryMaSV();
+			foreach ($aData as $values) {
+	    		if (strlen(strstr($values[1], $ma))>0){
+	    			return $values[0];
+			    }
+			}
+			break;
+		case 'GiangVien':
+			return \ThucTap\Models\ChatBoxModel::queryIdNhom($ma)['idNhom'];
+			break;
 	}
 }

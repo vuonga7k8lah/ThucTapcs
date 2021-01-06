@@ -2,7 +2,15 @@
 isUserLogin();
 require_once 'views/header.php';
 require_once 'views/SVviews/navigation.php';
-$row=\ThucTap\Models\SinhVienModel::selectAllThongBao($_SESSION['isLogin']['MaSV']);
+$aDataTB=\ThucTap\Models\SinhVienModel::selectAllThongBao($_SESSION['isLogin']['MaSV']);
+if (\ThucTap\Models\SinhVienModel::SelectMaDT($_SESSION['isLogin']['MaSV'])[1]>0){
+	$MaDT=\ThucTap\Models\SinhVienModel::SelectMaDT($_SESSION['isLogin']['MaSV'])[0]['MaDT'];
+	$aDataTBDT=\ThucTap\Models\SinhVienModel::selectAllThongBaoDT($MaDT);
+	$row=array_merge($aDataTB,$aDataTBDT);
+}else{
+	$row=$aDataTB;
+}
+
 ?>
 	<div class="right">
 		<div class="right__content">
@@ -27,10 +35,10 @@ $row=\ThucTap\Models\SinhVienModel::selectAllThongBao($_SESSION['isLogin']['MaSV
                             <tr>
                                 <td data-label="STT"><?= $i ?></td>
                                 <td data-label="Tiêu Đề"><?= $value[1] ?></td>
-                                <td data-label="Người Gửi"><?= handleNguoiGui($value[6]) ?></td>
-                                <td data-label="Thời Gian Gửi"><?= $value[4]?></td>
+                                <td data-label="Người Gửi"><?= handleNguoiGui($value[4]) ?></td>
+                                <td data-label="Thời Gian Gửi"><?= $value[6]?></td>
                                 <td data-label="Chi Tiết"><a href="<?=\ThucTap\Core\URL::uri('CTThongBao')
-                                    .'/?MaTB='.$value[0]?>">Chi
+                                    .'/?MaTB='.$value[0].'&Type='.$value[7]?>">Chi
                                         Tiết</a></td>
                             </tr>
 							<?php $i++;

@@ -4,6 +4,10 @@
 namespace ThucTap\Controllers;
 
 
+use ThucTap\Core\Redirect;
+use ThucTap\Core\Session;
+use ThucTap\Models\GiangVienModel;
+
 class GiangVienController
 {
 	public function dashboardGV()
@@ -34,6 +38,20 @@ class GiangVienController
 
 	public function guiActionTB()
 	{
+		$data = $_POST;
+		if (!empty($_FILES['DinhKem']['name'])) {
+			$data['DinhKem'] = uploadFile($_FILES['DinhKem']);
+		} else {
+			$data['DinhKem'] = "";
+		}
+		if (GiangVienModel::insertThongBaoDT($data)) {
+			Session::set('successTBDT', 'Thông Báo Đã ĐC Gửi');
+			Redirect::to('SVDK');
+		}
+	}
 
+	public function listHuyDK()
+	{
+		require_once "views/GVview/QLDK/QLDKView.php";
 	}
 }

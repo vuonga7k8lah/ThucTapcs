@@ -63,19 +63,41 @@ class SinhVienController
 
 	public function registerDeTai()
 	{
-		$data['MaDT'] = $_GET['id'];
-		$data['status'] = 'Đã DK';
-		$data['MaSV'] = $_SESSION['isLogin']['MaSV'];
-
-		if (SinhVienModel::updateStatusDetai($data) && SinhVienModel::insertSVDK($data)) {
-			?>
-            <script>
-                var x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
-                if (x == true) {
-                    window.location = "http://127.0.0.1/ThucTap/TTDeTai";
-                }
-            </script>
-			<?php
+		if (SinhVienModel::isExistDeTaiWithMaDT($_GET['id'])[0]) {
+			$aMasv = explode(" ", SinhVienModel::isExistDeTaiWithMaDT($_GET['id'])[1]['SinhVienDK']);
+			$aMasv[] = $_SESSION['isLogin']['MaSV'];
+			$data['MaDT'] = $_GET['id'];
+			$data['status'] = 'Đã DK';
+			$data['MaSV'] = implode($aMasv, " ");
+			if (SinhVienModel::updateStatusDetai($data)) {
+				foreach ($aMasv as $value) {
+					if (SinhVienModel::isMaSVExistSVDK($value) == 0) {
+						SinhVienModel::insertSVDK($value, $data['MaDT']);
+					}
+				}
+				?>
+                <script>
+                    var x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                    if (x == true) {
+                        window.location = "http://127.0.0.1/ThucTap/TTDeTai";
+                    }
+                </script>
+				<?php
+			}
+		} else {
+			$data['MaDT'] = $_GET['id'];
+			$data['status'] = 'Đã DK';
+			$data['MaSV'] = $_SESSION['isLogin']['MaSV'];
+			if (SinhVienModel::updateStatusDetai($data) && SinhVienModel::insertSVDK($data['MaSV'], $data['MaDT'])) {
+				?>
+                <script>
+                    var x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                    if (x == true) {
+                        window.location = "http://127.0.0.1/ThucTap/TTDeTai";
+                    }
+                </script>
+				<?php
+			}
 		}
 	}
 
@@ -124,5 +146,10 @@ class SinhVienController
             </script>
 	        <?php
         }
+	}
+
+	public function NopBaoCao()
+	{
+     require_once 'views/SVviews/NopBaoCao/NopBaoCaoView.php';
 	}
 }

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="./assets/admin/css/main.css">
     <link rel="stylesheet" href="./assets/admin/profile.css">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="./assets/css/font-awesome-4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
 <div class="wrapper">

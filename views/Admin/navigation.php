@@ -28,6 +28,14 @@
                 </div>
             </li>
             <li class="left__menuItem">
+                <div class="left__title"><img src="./assets/admin/assets/icon-book.svg" alt="">Quản Lý Nhóm Chat<img
+                            class="left__iconDown" src="./assets/admin/assets/arrow-down.svg" alt=""></div>
+                <div class="left__text">
+                    <a class="left__link" href="<?=\ThucTap\Core\URL::uri('listNhomChat')?>">List Nhóm Chat</a>
+                    <a class="left__link" href="<?=\ThucTap\Core\URL::uri('addNhomChat')?>">Thêm Nhóm Chat</a>
+                </div>
+            </li>
+            <li class="left__menuItem">
                 <a href="<?= \ThucTap\Core\URL::uri('logoutSV') ?>" class="left__title"><img
                             src="./assets/admin/assets/icon-logout.svg" alt="">Đăng Xuất</a>
             </li>

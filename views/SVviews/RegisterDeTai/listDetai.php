@@ -38,28 +38,37 @@ $aDataGV = \ThucTap\Models\GiangVienModel::queryGV();
                                     <tr>
                                         <th data-label="STT">STT</th>
                                         <th data-label="Tên Đề Tài">Tên Đề Tài</th>
-                                        <th data-label="Giảng Viên Hướng Dẫn">Giảng Viên Hướng Dẫn</th>
                                         <th data-label="Đính Kèm">Đính Kèm</th>
                                         <th data-label="Mô Tả">Mô Tả</th>
-                                        <th data-label="Trạng Thái">Trạng Thái</th>
-                                        <th data-label="Ngày Tạo">Ngày Tạo</th>
+                                        <th data-label="Số slot">Đã Đăng Ký</th>
+                                        <th data-label="Tên Sinh Viên">Tên Thành Viên</th>
                                         <th data-label="Đăng Ký">Đăng Ký</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-									<?php foreach (\ThucTap\Models\AdminModel::selectDeTaiWithMaGV($_SESSION['aDataDeTai'][0]) as $value): ?>
+									<?php foreach (\ThucTap\Models\AdminModel::selectDeTaiWithMaGV($_SESSION['aDataDeTai'][0]) as $value):
+										?>
                                         <tr>
                                             <td data-label="STT"><?= $i ?></td>
                                             <td data-label="Tên Đề Tài"><?= $value[1] ?></td>
-                                            <td data-label="Giảng Viên Hướng Dẫn"><?= $_SESSION['aDataDeTai'][1] ?></td>
-                                            <td data-label="Đính Kèm"><a href="<?= \ThucTap\Core\URL::uri('downloadFile/') . '?name='
-												. $value[5] . '&time=' . $value[3] ?>"><?=
+                                            <td data-label="Đính Kèm"><a
+                                                        href="<?= \ThucTap\Core\URL::uri('downloadFile/') . '?name='
+														. $value[5] . '&time=' . $value[3] ?>"><?=
 													$value[5]
 													?></a></td>
-                                            <td data-label="Mô Tả"><?= the_excerpt($value[6]) ?></td>
-                                            <td data-label="Trạng Thái"><?= $value[4]==='Đã DK' ? $value[4] : 'Đăng Ký' ?></td>
-                                            <td data-label="Ngày Tạo"><?= $value[3] ?></td>
-                                            <td data-label="Đăng Ký" class="right__iconTable"><?php if(empty($value[4])){ echo "<a href=\"<?= \ThucTap\Core\URL::uri('registerDeTai') . '/?id=' . $value[0] ?>\"><img src=\"./assets/admin/assets/icon-edit.svg\" alt=\"\"></a>";}else{echo 'Đã Đăng Ký';}?></td>
+                                            <td data-label="Mô Tả"><?= the_excerpt($value[6], 200) ?> ...</td>
+                                            <td data-label="Số slot"><?= !empty($value[9]) ? count(explode(" ",
+													$value[9])) : "0" ?>/3
+                                            </td>
+                                            <td data-label="Tên Sinh Viên"><?= !empty($value[9]) ? TenSV($value[9]) : "Chưa Đăng Ký" ?></td>
+                                            <td data-label="Đăng Ký"
+                                                class="right__iconTable"><?php if (count(explode(" ", $value[9])) ===
+													3) {
+													echo "Đã Đủ Người";
+												} else { ?><a href="<?=
+												\ThucTap\Core\URL::uri('registerDeTai') . '/?id=' . $value[0]
+												?>"><img src="./assets/admin/assets/icon-edit.svg" alt=""></a><?php } ?>
+                                            </td>
                                         </tr>
 										<?php $i++;
 									endforeach; ?>

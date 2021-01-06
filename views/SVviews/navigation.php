@@ -27,25 +27,27 @@
                 </a>
             </li>
 			<?php if (\ThucTap\Models\SinhVienModel::isSVDKDeTai($_SESSION['isLogin']['MaSV']) > 0) { ?>
-                <li class="left__menuItem">
-                    <a href="" class="left__title"><img src="./assets/admin/assets/icon-dashboard.svg" alt="">Tiến Độ Đề
-                        Tài
-                    </a>
-                </li>
+<!--                <li class="left__menuItem">-->
+<!--                    <a href="" class="left__title"><img src="./assets/admin/assets/icon-dashboard.svg" alt="">Tiến Độ Đề-->
+<!--                        Tài-->
+<!--                    </a>-->
+<!--                </li>-->
                 <li class="left__menuItem">
                     <a href="<?=\ThucTap\Core\URL::uri('TTDeTai')?>"><div class="left__title"><img src="./assets/admin/assets/icon-edit.svg" alt="">Thông Tin Đề Tài
                     </div></a>
                 </li>
                 <li class="left__menuItem">
-                    <div class="left__title"><a href=""><img src="./assets/admin/assets/icon-edit.svg" alt="">Gia Hạn Đề Tài</div></a>
+                    <div class="left__title"><a href="<?=\ThucTap\Core\URL::uri('chatbox')?>"><img src="
+                    ./assets/admin/assets/icon-edit.svg" alt="">Nhóm Chat Đê Tài</div></a>
                 </li>
                 <li class="left__menuItem">
                     <div class="left__title"><a href="<?=\ThucTap\Core\URL::uri('HuyDeTai')?>"><img src="
                     ./assets/admin/assets/icon-edit.svg"
-                                                                  alt="">Hủy Đề Tài</div></a>
+                                                                  alt="">Hủy Đăng Ký</div></a>
                 </li>
                 <li class="left__menuItem">
-                    <div class="left__title"><img src="./assets/admin/assets/icon-book.svg" alt="">Nộp Báo Cáo</div>
+                    <a href="<?=\ThucTap\Core\URL::uri('NopBaoCao')?>"><div class="left__title"><img src="./assets/admin/assets/icon-book.svg" alt="">Nộp Báo
+                        Cáo</div></a>
                 </li>
 			<?php } else { ?>
                 <li class="left__menuItem">
