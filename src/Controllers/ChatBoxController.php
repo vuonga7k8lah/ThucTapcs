@@ -36,8 +36,6 @@ class ChatBoxController
 			$data['idNhom'] = returnIdNhomFromMaSVOrMaGV($_SESSION['isLogin']['MaGV'], 'GiangVien');
 		}
 		?>
-		<div class="main-chat">
-		</div><!-- div.main-chat -->
 		<?php
 		if (ChatBoxModel::loadData($data['idNhom'])[0] > 0) {
 			foreach (ChatBoxModel::loadData($data['idNhom'])[1] as $row) {
@@ -53,11 +51,11 @@ class ChatBoxController
 					if ($row[2] == $_SESSION['isLogin']['TenSV']) {
 						echo '
 				<div class="msg-user">
-					<p>' . $row[1] . '</p>
 					<div class="info-msg-user">
 						Bạn - ' . $day_sent . '/' . $month_sent . '/' . $year_sent . ' lúc ' . $hour_sent . ':' .
 							$min_sent . '
 					</div>
+					<p>' . $row[1] . '</p>
 				</div>
 				
 			';
@@ -65,11 +63,11 @@ class ChatBoxController
 					else {
 						echo '
 				<div class="msg">
-					<p>' . $row[1] . '</p>
 					<div class="info-msg">
 						<b>' . $row[2] . ' </b>- ' . $day_sent . '/' . $month_sent . '/' . $year_sent . ' lúc ' . $hour_sent .
 							':' . $min_sent . '
 					</div>
+					<p>' . $row[1] . '</p>
 				</div>
 			';
 					}
@@ -77,11 +75,11 @@ class ChatBoxController
 					if ($row[2] == $_SESSION['isLogin']['TenGV']) {
 						echo '
 				<div class="msg-user">
-					<p>' . $row[1] . '</p>
 					<div class="info-msg-user">
 						Bạn - ' . $day_sent . '/' . $month_sent . '/' . $year_sent . ' lúc ' . $hour_sent . ':' .
 							$min_sent . '
 					</div>
+					<p>' . $row[1] . '</p>
 				</div>
 				
 			';
@@ -89,11 +87,11 @@ class ChatBoxController
 					else {
 						echo '
 				<div class="msg">
-					<p>' . $row[1] . '</p>
-					<div class="info-msg">
+				   <div class="info-msg">
 						<b>' . $row[2] . ' </b>- ' . $day_sent . '/' . $month_sent . '/' . $year_sent . ' lúc ' . $hour_sent .
 							':' . $min_sent . '
 					</div>
+					<p>' . $row[1] . '</p>
 				</div>
 			';
 					}

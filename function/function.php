@@ -12,9 +12,9 @@ function uploadFile($data)
 	$allowed = array('application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/pdf','application/vnd.ms-excel');
 	if (in_array(strtolower($data['type']), $allowed)) {
 		$NameIMG = $data['name'];
-//		if (!move_uploaded_file($data['tmp_name'], "./assets/upload/files/" . $data['name'])) {
-//			$errors[] = "<p class='error'>Server problem</p>";
-//		}
+		if (!move_uploaded_file($data['tmp_name'], "./assets/upload/files/" . $data['name'])) {
+			$errors[] = "<p class='error'>Server problem</p>";
+		}
 		// Xoa file da duoc upload va ton tai trong thu muc tam
 		if (isset($data['tmp_name']) && is_file($data['tmp_name']) && file_exists($data['tmp_name'])) {
 			unlink($data['tmp_name']);
@@ -201,13 +201,27 @@ function returnIdNhomFromMaSVOrMaGV($ma, $type)
 		case 'SinhVien':
 			$aData = \ThucTap\Models\ChatBoxModel::queryMaSV();
 			foreach ($aData as $values) {
-	    		if (strlen(strstr($values[1], $ma))>0){
-	    			return $values[0];
-			    }
+				if (strlen(strstr($values[1], $ma)) > 0) {
+					return $values[0];
+				}
 			}
 			break;
 		case 'GiangVien':
 			return \ThucTap\Models\ChatBoxModel::queryIdNhom($ma)['idNhom'];
+			break;
+	}
+}
+
+function TenDT($MaDT,$return)
+{
+	switch ($return){
+		case 'TenDT':
+			return (\ThucTap\Database\DB::makeConnection()->query("SELECT TenDT from detai where MaDT='".$MaDT."'")
+				->fetch_assoc())['TenDT'];
+			break;
+		case 'SVDK':
+			return TenSV((\ThucTap\Database\DB::makeConnection()->query("SELECT SinhVienDK from detai where MaDT='".$MaDT."'")
+				->fetch_assoc())['SinhVienDK']);
 			break;
 	}
 }

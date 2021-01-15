@@ -7,7 +7,7 @@ $i = 1;
 if (empty($row)) {
 	echo '<div class="right">
 		<div class="right__content">
-			<div class="right__title">Quản Lý Đăng Ký Đề Tài</div>
+			<div class="right__title">Danh Sách Sinh Viên Hủy Đăng Ký</div>
 			<h2>Chưa Có Sinh Viên Nào Hủy Đăng Ký Đề Tài Cả</h2>
 			</div>
 			</div>';

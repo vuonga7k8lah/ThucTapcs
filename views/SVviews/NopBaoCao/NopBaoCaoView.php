@@ -2,26 +2,30 @@
 isUserLogin();
 require_once 'views/header.php';
 require_once 'views/SVviews/navigation.php';
+$aDataGV=\ThucTap\Models\GiangVienModel::queryGV();
+$aDataDetai=\ThucTap\Models\SinhVienModel::queryDeTai($_SESSION['isLogin']['MaSV']);
 ?>
 	<div class="right">
 		<div class="right__content">
 			<div class="right__title">Nộp Báo Cáo</div>
 			<div class="right__formWrapper">
 				<form action="<?=\ThucTap\Core\URL::uri('NopBaoCao')?>" method="post" enctype="multipart/form-data">
-					<div class="right__inputWrapper">
-						<label for="title">Mã Đề Tài</label>
-						<div id="availableMaDT"></div>
-						<input type="text" name="MaDT" id="MaDT" required>
-					</div>
-					<div class="right__inputWrapper">
-						<label for="p_category">Chọn Giảng Viên Hướng Dẫn</label>
-						<select name="MaGV">
-							<option disabled selected>Chọn Giảng Viên</option>
-							<?php foreach ($aDataGV as $value) :?>
-								<option value="<?=$value[0]?>"><?=$value[2]?></option>
-							<?php endforeach;?>
-						</select>
-					</div>
+                    <div class="right__inputWrapper">
+                        <label for="MaDT">Mã Đề Tài</label>
+                        <input type="text" name="MaDT" id="MaDT" value="<?=$aDataDetai['MaDT']?>" disabled required>
+                        <input type="hidden" name="MaDT" value="<?=$aDataDetai['MaDT']?>">
+                        <input type="hidden" name="MaSV"  value="<?=$_SESSION['isLogin']['MaSV']?>">
+                    </div>
+                    <div class="right__inputWrapper">
+                        <select name="MaGV">
+                            <option disabled selected>Chọn Giảng Viên</option>
+							<?php foreach ($aDataGV as $key=>$value) :
+								if($value[0]==$aDataDetai['MaGV']){
+									?>
+                                    <option value="<?=$value[0]?>" selected><?=$value[2]?></option>
+								<?php } endforeach;?>
+                        </select>
+                    </div>
 					<div class="right__inputWrapper">
 						<label for="p_category">Tiêu Đề Báo Cáo</label>
 						<input type="text" name="TenBC" required>

@@ -3,5 +3,8 @@
     "psr-4": {
       "ThucTap\\": "src/"
     }
-  }
+  },
+  "require": {
+          "vectorface/googleauthenticator": "^2.0"
+      }
 }

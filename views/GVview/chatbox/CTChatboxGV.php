@@ -3,30 +3,33 @@ isUserLogin();
 require_once 'views/header.php';
 require_once 'views/GVview/navigation.php';
 $a = new \ThucTap\Controllers\ChatBoxController();
-$data=\ThucTap\Models\ChatBoxModel::loadDataWithIdNhom($_GET['id']);
+$data = \ThucTap\Models\ChatBoxModel::loadDataWithIdNhom($_GET['id']);
 ?>
-	<script>
-        const Globol={"url":"/ThucTap/urlChatBox"};
-	</script>
-	<div class="right">
-		<div class="right__content">
-			<div class="right__title"><i class="fa fa-commenting"></i><?=$data['TenNhom']?></div>
-			<div class="clearfix"></div>
-			<div class="right">
-				<div class="right__content">
-					<div class="main-chat">
-						<?php $a->LoadlistData(); ?>
-					</div><!-- div.main-chat -->
-					<div class="box-chat">
-						<form method="POST" id="formSendMsg" onsubmit="return false;">
-							<input type="text" placeholder="Nhập nội dung tin nhắn ...">
-                            <i class="fa fa-paper-plane" aria-hidden="true" onclick="sendMsg()"></i>
-						</form><!-- form#formSendMsg -->
-					</div><!-- div.box-chat -->
-				</div>
-			</div>
+    <script>
+        const Globol = {"url": "/ThucTap/urlChatBox"};
+    </script>
+    <div class="right">
+        <div class="right__content">
+            <div class="right__title"><i class="fa fa-commenting"></i><?= $data['TenNhom'] ?></div>
+            <div class="container" style="border: solid 3px; border-radius: 20px">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="main-chat">
+					        <?php $a->LoadlistData(); ?>
+                        </div>
+                    </div>
+                </div>
 
-		</div>
-	</div>
+                <div class="form-group">
+                    <form method="POST" id="formSendMsg" onsubmit="return false;">
+                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
+                               placeholder="Nhập nội dung tin nhắn ..." style="">
+                        <button onclick="sendMsg()"><i class="fa fa-paper-plane"></i></button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 <?php
 require_once 'views/footer.php';

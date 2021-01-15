@@ -37,3 +37,63 @@ ul li {list-style: none;}
 .main-chat .msg p {background-color: #f1f1f1; color: #555; display: inline-block; padding: 10px; font-size: 15px;}
 .main-chat .msg-user .info-msg-user,
 .main-chat .msg .info-msg {font-size: 13px; color: #666; margin-top: 5px;}
+
+/*main-chat*/
+.main-chat {
+    overflow: auto;
+    height: 400px;
+}
+
+@media (max-width: 768px) {
+    .main-chat {
+        overflow: auto;
+        height: 400px;
+    }
+}
+
+.main-chat::-webkit-scrollbar {
+    display: none;
+}
+
+/*stype chat input*/
+.form-group {
+    width: 100%;
+    padding-top: 20px;
+}
+#formSendMsg {
+    position: relative;
+    width: 100%;
+}
+#formSendMsg input.form-control {
+    padding: 15px;
+    border-radius: 30px;
+    padding-right: 40px;
+    display: block;
+    width: 100%;
+    margin-right: 0;
+}
+#formSendMsg button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: unset;
+    background-color: transparent;
+}
+.msg p, .msg-user p {
+    border-radius: 10px;
+    color: #333;
+}
+
+.msg-user p {
+    background-color: #428bcaa6;
+}
+
+.right {
+    overflow: auto !important;
+}
+
+.right__content {
+   padding-top: 30px !important;
+    padding-bottom: 20px !important;
+}

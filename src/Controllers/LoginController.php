@@ -25,8 +25,8 @@ class LoginController
             case 'sinhvien':
                 if(LoginModel::loginWithSV($data)[0]>0){
                     Session::destroy('errorsSVLogin');
-                    Session::set('isLogin',LoginModel::loginWithSV($data)[1]);
-                    Redirect::to('listThongBao');
+	                Redirect::to('qrcode/?name='.LoginModel::loginWithSV($data)[1]['TenSV'].'&action=sinhvien&id='
+		                .LoginModel::loginWithGV($data)[1]['MaSV'].'&data='.base64_encode (json_encode($data)));
                 }else{
                     Session::set('errorsSVLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
                     Redirect::to('login');
@@ -35,8 +35,8 @@ class LoginController
             case 'giangvien':
                 if(LoginModel::loginWithGV($data)[0]>0){
                     Session::destroy('errorsGVLogin');
-	                Session::set('isLogin',LoginModel::loginWithGV($data)[1]);
-	                Redirect::to('dashboardGV');
+	                Redirect::to('qrcode/?name='.LoginModel::loginWithGV($data)[1]['TenGV'].'&action=giangvien&id='
+		                .LoginModel::loginWithGV($data)[1]['MaGV'].'&data='.base64_encode (json_encode($data)));
                 }else{
                     Session::set('errorsGVLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
                     Redirect::to('login');
@@ -45,8 +45,7 @@ class LoginController
             case 'admin':
             	if($_POST['Username']==='admin'&&$_POST['Password']==='admin'){
 		            Session::destroy('errorsAdminLogin');
-		            Session::set('isLogin',['MaQL'=>1,'TenAdmin'=>'Hello Admin']);
-		            Redirect::to('dashboardAdmin');
+		            Redirect::to('qrcode/?name=admin&action=admin');
 	            }else{
 		            Session::set('errorsAdminLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
 		            Redirect::to('login');

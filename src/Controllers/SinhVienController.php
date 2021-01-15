@@ -5,7 +5,6 @@ namespace ThucTap\Controllers;
 
 
 use ThucTap\Core\Redirect;
-use ThucTap\Core\Request;
 use ThucTap\Core\Session;
 use ThucTap\Models\AdminModel;
 use ThucTap\Models\GiangVienModel;
@@ -26,22 +25,6 @@ class SinhVienController
 	public function addDetaiView()
 	{
 		require_once 'views/SVviews/RegisterDeTai/addDeTai.php';
-	}
-
-	public function addDetai()
-	{
-		$data = $_POST;
-		$data['TaiLieu'] = uploadFile($_FILES['TaiLieu']);
-		if (SinhVienModel::insertTaiLieuDX($data)) {
-			?>
-            <script>
-                var x = confirm('Yêu Cầu Của Bạn Đã Được Gửi Đến Giảng Viên Hãy Chờ Phê Duyệt');
-                if (x == true) {
-                    window.location = "http://127.0.0.1/ThucTap/listDetai";
-                }
-            </script>
-			<?php
-		}
 	}
 
 	public function actionListDeTaiSV()
@@ -77,9 +60,9 @@ class SinhVienController
 				}
 				?>
                 <script>
-                    var x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
-                    if (x == true) {
-                        window.location = "http://127.0.0.1/ThucTap/TTDeTai";
+                    let x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                    if (x === true) {
+                        window.location = "/ThucTap/TTDeTai";
                     }
                 </script>
 				<?php
@@ -91,9 +74,9 @@ class SinhVienController
 			if (SinhVienModel::updateStatusDetai($data) && SinhVienModel::insertSVDK($data['MaSV'], $data['MaDT'])) {
 				?>
                 <script>
-                    var x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
-                    if (x == true) {
-                        window.location = "http://127.0.0.1/ThucTap/TTDeTai";
+                    let x = confirm('Đăng Ký Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                    if (x === true) {
+                        window.location = "/ThucTap/TTDeTai";
                     }
                 </script>
 				<?php
@@ -139,9 +122,9 @@ class SinhVienController
         if (SinhVienModel::insertHuyDT($data)){
 	        ?>
             <script>
-                var x = confirm('Yêu Cầu Của Bạn Đã Được Gửi Tới Hệ Thống ');
-                if (x == true) {
-                    window.location = "http://127.0.0.1/ThucTap/dashboardSV";
+                let x = confirm('Yêu Cầu Của Bạn Đã Được Gửi Tới Hệ Thống ');
+                if (x === true) {
+                    window.location = "/ThucTap/dashboardSV";
                 }
             </script>
 	        <?php
@@ -150,6 +133,22 @@ class SinhVienController
 
 	public function NopBaoCao()
 	{
-     require_once 'views/SVviews/NopBaoCao/NopBaoCaoView.php';
+		require_once 'views/SVviews/NopBaoCao/NopBaoCaoView.php';
+	}
+
+	public function handleNopBaoCao()
+	{
+		$aData = $_POST;
+		$aData['DinhKem'] = uploadFile($_FILES['DinhKem']);
+		if (SinhVienModel::insertDataTienDo($aData)) {
+			?>
+            <script>
+                let x = confirm('Báo Cáo Của Bạn Đã Được Gửi Đến Hệ Thống ');
+                if (x === true) {
+                    window.location = "/ThucTap/listThongBao";
+                }
+            </script>
+			<?php
+		}
 	}
 }

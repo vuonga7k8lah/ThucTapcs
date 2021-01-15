@@ -41,7 +41,7 @@
                 </a>
             </li>
             <li class="left__menuItem">
-                <a href="<?= \ThucTap\Core\URL::uri('') ?>">
+                <a href="<?= \ThucTap\Core\URL::uri('listBaoCaoGV') ?>">
                     <div class="left__title"><img src="./assets/admin/assets/icon-user.svg" alt="">Báo Cáo Đề Tài
                     </div>
                 </a>

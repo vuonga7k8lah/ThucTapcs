@@ -56,6 +56,7 @@ $aRoute->get('editDeTai/','ThucTap\Controllers\AdminQuanLyUserController@editDeT
 $aRoute->post('addDeTai','ThucTap\Controllers\AdminQuanLyUserController@addDeTai');
 //Giảng Viên
 $aRoute->get('dashboardGV','ThucTap\Controllers\GiangVienController@dashboardGV');
+$aRoute->get('dashboardGV','ThucTap\Controllers\GiangVienController@dashboardGV');
 $aRoute->get('SVDK','ThucTap\Controllers\GiangVienController@SVDK');
 //thong tin cai nhan
 $aRoute->get('profileGV','ThucTap\Controllers\GiangVienController@profileGV');
@@ -77,3 +78,8 @@ $aRoute->get('CTNhomGV/','ThucTap\Controllers\ChatBoxController@CTNhomGV');
 $aRoute->get('listHuyDK','ThucTap\Controllers\GiangVienController@listHuyDK');
 //nộp Báo cáo
 $aRoute->get('NopBaoCao','ThucTap\Controllers\SinhVienController@NopBaoCao');
+$aRoute->get('listBaoCaoGV','ThucTap\Controllers\GiangVienController@listBaoCaoGV');
+$aRoute->post('NopBaoCao','ThucTap\Controllers\SinhVienController@handleNopBaoCao');
+
+$aRoute->get('qrcode/','ThucTap\Controllers\QRCodeController@qrcode');
+$aRoute->post('qrcode','ThucTap\Controllers\QRCodeController@actionQRCode');

@@ -54,4 +54,9 @@ class GiangVienController
 	{
 		require_once "views/GVview/QLDK/QLDKView.php";
 	}
+
+	public function listBaoCaoGV()
+	{
+		require_once "views/GVview/QLBaoCao/viewBaoCao.php";
+	}
 }

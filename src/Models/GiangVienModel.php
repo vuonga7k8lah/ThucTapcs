@@ -72,6 +72,13 @@ class GiangVienModel
 
 	public static function cancelDeTai($MaGV)
 	{
-		return DB::makeConnection()->query("SELECT dt.TenDT,dt.SinhVienDK,h.MaSV,h.LyDo,h.register_date FROM huydetai h JOIN detai dt on dt.MaDT=h.MaDT WHERE h.MaGV='".$MaGV."'")->fetch_all();
+		return DB::makeConnection()
+			->query("SELECT dt.TenDT,dt.SinhVienDK,h.MaSV,h.LyDo,h.register_date FROM huydetai h JOIN detai dt on dt.MaDT=h.MaDT WHERE h.MaGV='" .
+				$MaGV . "'")->fetch_all();
+	}
+
+	public static function ListBaoCaoGV($MaGV)
+	{
+		return DB::makeConnection()->query("select * from tiendo where MaGV='".$MaGV."'")->fetch_all();
 	}
 }

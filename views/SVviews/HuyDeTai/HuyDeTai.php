@@ -3,24 +3,26 @@ isUserLogin();
 require_once 'views/header.php';
 require_once 'views/SVviews/navigation.php';
 $aDataGV=\ThucTap\Models\GiangVienModel::queryGV();
+$aDataDetai=\ThucTap\Models\SinhVienModel::queryDeTai($_SESSION['isLogin']['MaSV']);
 ?>
 	<div class="right">
 		<div class="right__content">
-			<div class="right__title">Hủy Đề Tài</div>
+			<div class="right__title">Hủy Đăng Ký Đề Tài</div>
 			<div class="right__formWrapper">
 				<form action="<?=\ThucTap\Core\URL::uri('HuyDeTai')?>" method="post" enctype="multipart/form-data">
 					<div class="right__inputWrapper">
 						<label for="MaDT">Mã Đề Tài</label>
-						<input type="text" name="MaDT" id="MaDT" required>
+						<input type="text" name="MaDT" id="MaDT" value="<?=$aDataDetai['MaDT']?>" disabled required>
 						<input type="hidden" name="MaSV"  value="<?=$_SESSION['isLogin']['MaSV']?>">
 					</div>
 					<div class="right__inputWrapper">
-						<label for="p_category">Chọn Giảng Viên Hướng Dẫn</label>
 						<select name="MaGV">
 							<option disabled selected>Chọn Giảng Viên</option>
-							<?php foreach ($aDataGV as $value) :?>
-								<option value="<?=$value[0]?>"><?=$value[2]?></option>
-							<?php endforeach;?>
+							<?php foreach ($aDataGV as $key=>$value) :
+                                if($value[0]==$aDataDetai['MaGV']){
+                                ?>
+								<option value="<?=$value[0]?>" selected><?=$value[2]?></option>
+							<?php } endforeach;?>
 						</select>
 					</div>
 					<div class="right__inputWrapper">

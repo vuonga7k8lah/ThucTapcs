@@ -113,4 +113,10 @@ class SinhVienModel
 			"'and Status='Đã DK'");
 		return [$query->num_rows, $query->fetch_assoc()];
 	}
+
+	public static function insertDataTienDo($aData)
+	{
+		$sql = "INSERT INTO `tiendo`(`MaBC`, `date_time`, `TieuDe`, `NguoiBC`, `NoiDung`, `MaDT`, `MaGV`, `TaiLieu`) VALUES (null,null,'".$aData['TenBC']."','".$aData['MaSV']."','".$aData['MoTa']."','".$aData['MaDT']."','".$aData['MaGV']."','".$aData['DinhKem']."')";
+		return DB::makeConnection()->query($sql);
+	}
 }
