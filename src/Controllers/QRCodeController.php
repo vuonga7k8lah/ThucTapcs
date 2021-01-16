@@ -89,7 +89,7 @@ class QRCodeController
                     <script>
                         let x = confirm('Hãy Nhập Lại Mã QRcode');
                         if (x === true) {
-                            window.location = "/ThucTap/qrcode/?name=admin";
+                            window.location = "/ThucTap/qrcode/?name=admin&action=admin;
                         }
                     </script>
 					<?php

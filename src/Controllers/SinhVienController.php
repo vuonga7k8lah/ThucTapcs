@@ -124,7 +124,7 @@ class SinhVienController
             <script>
                 let x = confirm('Yêu Cầu Của Bạn Đã Được Gửi Tới Hệ Thống ');
                 if (x === true) {
-                    window.location = "/ThucTap/dashboardSV";
+                    window.location = "/ThucTap/listThongBao";
                 }
             </script>
 	        <?php

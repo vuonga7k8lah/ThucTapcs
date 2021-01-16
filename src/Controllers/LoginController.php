@@ -26,7 +26,7 @@ class LoginController
                 if(LoginModel::loginWithSV($data)[0]>0){
                     Session::destroy('errorsSVLogin');
 	                Redirect::to('qrcode/?name='.LoginModel::loginWithSV($data)[1]['TenSV'].'&action=sinhvien&id='
-		                .LoginModel::loginWithGV($data)[1]['MaSV'].'&data='.base64_encode (json_encode($data)));
+		                .LoginModel::loginWithSV($data)[1]['MaSV'].'&data='.base64_encode (json_encode($data)));
                 }else{
                     Session::set('errorsSVLogin','Bạn Hãy Xem Lại Tài Khoản và Mật Khẩu');
                     Redirect::to('login');

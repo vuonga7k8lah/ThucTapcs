@@ -14,6 +14,7 @@ $aDataDetai=\ThucTap\Models\SinhVienModel::queryDeTai($_SESSION['isLogin']['MaSV
 						<label for="MaDT">Mã Đề Tài</label>
 						<input type="text" name="MaDT" id="MaDT" value="<?=$aDataDetai['MaDT']?>" disabled required>
 						<input type="hidden" name="MaSV"  value="<?=$_SESSION['isLogin']['MaSV']?>">
+						<input type="hidden" name="MaDT"  value="<?=$aDataDetai['MaDT']?>">
 					</div>
 					<div class="right__inputWrapper">
 						<select name="MaGV">

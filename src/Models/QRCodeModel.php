@@ -38,7 +38,7 @@ class QRCodeModel
 	}
 	public static function updateEnable2NFSV($id)
 	{
-		return DB::makeConnection()->query("UPDATE `sinhvien` SET `2nf`='true' WHERE `MaGV`='" . $id . "'");
+		return DB::makeConnection()->query("UPDATE `sinhvien` SET `2nf`='true' WHERE `MaSV`='" . $id . "'");
 	}
 
 	public static function isEnable2NFSV($id)
